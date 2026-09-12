@@ -8,29 +8,19 @@ jobs:
     runs-on: windows-2022
 
     steps:
-    - name: Checkout repository
+    - name: Checkout XMRig
       uses: actions/checkout@v4
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v2
-
-    - name: Download & Build Dependencies
-      shell: cmd
-      run: |
-        call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-        cd scripts
-        call build_deps.cmd
+    - name: Clone XMRig Dependencies
+      run: git clone https://github.com/xmrig/xmrig-deps.git C:\xmrig-deps
 
     - name: Configure CMake
-      shell: cmd
       run: |
-        call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
         mkdir build
         cd build
-        cmake .. -G "Visual Studio 17 2022" -A x64 -DXMRIG_DEPS=scripts/deps
+        cmake .. -G "Visual Studio 17 2022" -A x64 -DXMRIG_DEPS=C:\xmrig-deps\msvc2022\x64
 
-    - name: Build XMRig
-      shell: cmd
+    - name: Build XMRig (Release)
       run: |
         cd build
         cmake --build . --config Release
