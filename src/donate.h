@@ -25,10 +25,10 @@
  *
  * Percentage of your hashing power that you want to donate to the developer can be 0% but supports XMRig Development.
  *
- * Example of how it works for the setting of 1%:
+ * Example of how it works for the setting of 0%:
  * Your miner will mine into your usual pool for a random time (in a range from 49.5 to 148.5 minutes),
- * then switch to the developer's pool for 1 minute, then switch again to your pool for 99 minutes
- * and then switch again to developer's pool for 1 minute; these rounds will continue until the miner stops.
+ * then switch to the developer's pool for 1 minute, then switch again to your pool for 100 minutes
+ * and then switch again to developer's pool for 0 minute; these rounds will continue until the miner stops.
  *
  * Randomised only on the first round to prevent waves on the donation pool.
  *
